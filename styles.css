@@ -1,0 +1,142 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --spacing-1: 10px;
+    --spacing-2: 16px;
+    --spacing-3: 26px;
+    --spacing-4: 42px;
+    --spacing-5: 68px;
+    --spacing-6: 110px;
+    --spacing-7: 177px;
+    --spacing-8: 287px;
+    --spacing-9: 464px;
+    --color-black: hsl(0, 0%, 7.8%);
+    --color-white: hsl(0, 0%, 97.3%);
+    --color-white-transparent: hsla(0, 0%, 97.3%, 0.75);
+    --color-gray: hsl(0, 0%, 43.1%);
+    --font-title: "Caudex", serif;
+    --font-subheader: "Averia Libre", system-ui;
+    --font-main: "Raleway", sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+navbar {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    color: var(--color-white);
+    padding: var(--spacing-1);
+}
+
+#navbar-title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+
+    h1 {
+        font-family: var(--font-title);
+        font-size: var(--spacing-2);
+        font-weight: 100;
+        text-transform: uppercase;
+    }
+}
+
+#navbar-selected-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-3);
+
+    p {
+        font-family: var(--font-subheader);
+        font-size: var(--spacing-3);
+        line-height: 0.5;
+        display: none;
+    }
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-white-transparent);
+}
+
+#navbar-menu-icon {
+    display: inline;
+    fill: var(--color-white);
+    height: var(--spacing-4);
+}
+
+#navbar-sections-list {
+    display: none;
+    justify-content: center;
+    gap: var(--spacing-2);
+    font-family: var(--font-subheader);
+    font-size: var(--spacing-2);
+    line-height: 0.5;
+
+    p {
+        font-size: var(--spacing-3);
+        line-height: 0.1;
+    }
+
+    a {
+        color: var(--color-white);
+
+    }
+}
+
+#main-home {
+    height: 100%;
+    background: url('images/home1.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+@media (min-width: 770px) {
+    navbar {
+        padding: var(--spacing-3);
+        justify-content: space-between;
+    }
+
+    #navbar-selected-section {
+        align-items: end;
+
+        p {
+            display: inline;
+        }
+    }
+
+    #navbar-title h1 {
+        font-size: var(--spacing-4);
+    }
+
+    #navbar-menu-icon {
+        display: none;
+        fill: var(--color-white);
+        height: var(--spacing-4);
+    }
+
+    #navbar-sections-list {
+        display: flex;
+    }
+}
