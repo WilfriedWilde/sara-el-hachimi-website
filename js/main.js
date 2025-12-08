@@ -1,0 +1,1 @@
+import initNavbar from "./navbar.js";
