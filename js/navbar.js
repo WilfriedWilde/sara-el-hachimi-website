@@ -78,7 +78,7 @@ function showDots() {
     const name = selectedSection.querySelector('p');
 
     tl
-        .to(name, { width: 16, duration: 0.2 })
+        .to(selectedSection, { width: 16, duration: 0.2 })
         .add(() => { name.innerHTML = dots })
 
     tl.restart();
