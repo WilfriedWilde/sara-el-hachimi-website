@@ -37,20 +37,24 @@ a {
     text-decoration: none;
 }
 
-navbar {
+nav {
     position: fixed;
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-direction: column;
     justify-content: center;
-    align-items: end;
+    align-items: center;
     color: var(--color-white);
     padding: var(--spacing-1);
 }
 
 #navbar-title {
     display: flex;
+    grid-column: 2;
     flex-direction: column;
     gap: var(--spacing-2);
+    width: max-content;
 
     h1 {
         font-family: var(--font-title);
@@ -60,49 +64,62 @@ navbar {
     }
 }
 
-#navbar-selected-section {
+#navbar-selected-section-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-3);
-
-    p {
-        font-family: var(--font-subheader);
-        font-size: var(--spacing-3);
-        line-height: 0.5;
-        display: none;
-    }
+    gap: var(--spacing-2);
 }
 
-.line {
+#selected-section {
+    display: none;
+}
+
+.line-horizontal {
     height: 1px;
     width: 100%;
     background-color: var(--color-white-transparent);
 }
 
-#navbar-menu-icon {
+.line-vertical {
+    width: 1px;
+    background-color: var(--color-white-transparent);
+    height: 0;
+}
+
+.navbar-home-icon {
     display: inline;
     fill: var(--color-white);
     height: var(--spacing-4);
 }
 
+#navbar-sections-container {
+    display: flex;
+    gap: var(--spacing-2);
+    grid-column: 3;
+    grid-row: 2;
+}
+
 #navbar-sections-list {
-    display: none;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: var(--spacing-2);
     font-family: var(--font-subheader);
-    font-size: var(--spacing-2);
-    line-height: 0.5;
 
-    p {
-        font-size: var(--spacing-3);
-        line-height: 0.1;
+    svg {
+        display: none;
     }
 
     a {
         color: var(--color-white);
-
+        opacity: 0;
     }
+}
+
+.home-icon-dots {
+    fill: var(--color-white);
+    height: var(--spacing-3);
 }
 
 #main-home {
@@ -113,16 +130,27 @@ navbar {
 }
 
 @media (min-width: 770px) {
-    navbar {
+    nav {
+        display: flex;
         padding: var(--spacing-3);
+        flex-direction: row;
         justify-content: space-between;
+        align-items: end;
     }
 
-    #navbar-selected-section {
-        align-items: end;
+    #navbar-selected-section-container {
+        align-items: center;
+        gap: var(--spacing-3);
+        height: var(--spacing-3);
+    }
+
+    #selected-section {
+        display: flex;
+        width: var(--spacing-2);
 
         p {
-            display: inline;
+            font-family: var(--font-subheader);
+            font-size: var(--spacing-3);
         }
     }
 
@@ -130,13 +158,21 @@ navbar {
         font-size: var(--spacing-4);
     }
 
-    #navbar-menu-icon {
+    .navbar-home-icon {
         display: none;
-        fill: var(--color-white);
-        height: var(--spacing-4);
     }
 
     #navbar-sections-list {
-        display: flex;
+        flex-direction: row;
+        height: var(--spacing-3);
+        font-size: var(--spacing-3);
+
+        svg {
+            display: inline;
+        }
+
+        a {
+            opacity: 1;
+        }
     }
 }
