@@ -74,7 +74,7 @@ function getDesktopTimeline() {
 }
 
 function initNavbarMobile() {
-    const navbarButton = navbar.querySelector('.navbar-home-icon');
+    const navbarButton = navbar.querySelector('.home-icon-dots');
     navbarButton.addEventListener('click', handleMenuDisplay);
 }
 

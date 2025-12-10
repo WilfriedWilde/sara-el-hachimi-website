@@ -61,6 +61,10 @@ nav {
         font-size: var(--spacing-3);
         font-weight: 100;
         text-transform: uppercase;
+
+        a {
+            color: var(--color-white);
+        }
     }
 }
 
@@ -72,7 +76,7 @@ nav {
 }
 
 #selected-section {
-    display: none;
+    display: flex;
 }
 
 .line-horizontal {
@@ -146,7 +150,6 @@ nav {
     }
 
     #selected-section {
-        display: flex;
         width: var(--spacing-2);
 
         p {
