@@ -1,3 +1,3 @@
-import initNavbar from "./navbar.js";
+import initBarba from "./barba.js";
 
-initNavbar()
+initBarba();
