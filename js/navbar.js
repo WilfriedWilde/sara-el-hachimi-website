@@ -48,8 +48,27 @@ function getDesktopTimeline() {
     const name = selectedSection.querySelector('p');
 
     tl
-        .to(selectedSection, { width: selectedSectionInfo.width, duration: 0.2 })
-        .add(() => { name.innerHTML = selectedSectionInfo.name })
+        .to(selectedSection, { width: selectedSectionInfo.width, duration: 0.15 })
+        .to(name, {
+            yPercent: -100,
+            duration: 0.15,
+            opacity: 0
+        }, 0)
+        .add(() => {
+            name.innerHTML = selectedSectionInfo.name;
+
+            const split = SplitText.create(name, { type: 'words', masks: 'words' })
+            gsap.fromTo(name, {
+                yPercent: 100,
+                opacity: 0,
+                
+            }, {
+                yPercent: 0,
+                opacity: 1,
+                duration: 0.15,
+            }
+            )
+        })
 
     return tl;
 }
