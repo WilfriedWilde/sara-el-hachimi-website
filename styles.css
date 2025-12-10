@@ -152,6 +152,7 @@ nav {
         p {
             font-family: var(--font-subheader);
             font-size: var(--spacing-3);
+            display: flex;
         }
     }
 

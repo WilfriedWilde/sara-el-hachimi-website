@@ -50,7 +50,7 @@ function getDesktopTimeline() {
     tl
         .to(selectedSection, { width: selectedSectionInfo.width, duration: 0.15 })
         .to(name, {
-            yPercent: -100,
+            yPercent: -25,
             duration: 0.15,
             opacity: 0
         }, 0)
@@ -59,9 +59,9 @@ function getDesktopTimeline() {
 
             const split = SplitText.create(name, { type: 'words', masks: 'words' })
             gsap.fromTo(name, {
-                yPercent: 100,
+                yPercent: 25,
                 opacity: 0,
-                
+
             }, {
                 yPercent: 0,
                 opacity: 1,
@@ -98,7 +98,10 @@ function showDots() {
 
     tl
         .to(selectedSection, { width: 16, duration: 0.2 })
-        .add(() => { name.innerHTML = dots })
+        .to(name, { opacity: 0, duration: 0.2 }, 0.05)
+        .add(() => { name.innerHTML = dots; })
+        .to(name, { yPercent: 0, opacity: 1, duration: 0 }, '>0.1')   
+        .from(name, { xPercent: 100, opacity: 0, duration: 0.3 }); 
 
     tl.restart();
 }
