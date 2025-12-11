@@ -21,7 +21,8 @@ export default function initBarba() {
             namespace: null,
             beforeEnter({ next }) {
                 const container = next.container.querySelector("[data-barba='container']");
-                const page = next.container.dataset.namespace;console.log('next page:', page)
+                const page = next.container.dataset.namespace;
+
                 initUI(page, container)
             }
         }],
@@ -31,6 +32,14 @@ export default function initBarba() {
                 const container = document.querySelector("[data-barba='container']");
                 const page = container.dataset.namespace;
                 initUI(page, container);
+
+                endNavigation();
+            },
+            leave({ current }) {
+                gsap.to(current.container, { autoAlpha: 0, duration: 0.5 });
+            },
+            enter({ next }) {
+                gsap.from(next.container, { autoAlpha: 0, duration: 0.5 });
             },
         }]
     })

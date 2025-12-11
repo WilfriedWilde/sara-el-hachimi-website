@@ -4,7 +4,6 @@ const navbar = document.querySelector('nav');
 const list = navbar.querySelector('ul');
 const selectedSection = navbar.querySelector('#selected-section');
 const navbarButton = selectedSection.querySelector('p');
-let selectedPage;
 
 const dots = ` 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="home-icon-dots">
@@ -24,11 +23,10 @@ function getColor(name) {
     return getComputedStyle(document.documentElement).getPropertyValue(`--color-${name}`).trim();
 }
 
-let navbarTimelines = {};
-let isMenuDisplayed = false;
-let selectedSectionInfo = {};
-
-navbarTimelines = initNavbarTimelines();
+let selectedPage;
+let navbarTimelines = {}, selectedSectionInfo = {};
+let isMenuDisplayed = false, isMobile = false, isNavbarHidden = false;
+let lastY = 0;
 
 function initNavbarTimelines() {
     return {
@@ -38,19 +36,35 @@ function initNavbarTimelines() {
     }
 }
 
-
-
-
-
-
 ////////// STARTS HERE ///////////
 
 export default function initNavbar(page) {
-    selectedPage = page;
+    selectedPage = page; console.log('init:', selectedPage)
+    navbarTimelines = initNavbarTimelines();
+
     if (selectedPage === 'index') navbarTimelines.transitionNavbarHome();
     else navbarTimelines.transitionNavbarNotHome();
-    if (window.innerWidth < 770) initNavbarMobile()
+
+    isMobile = window.innerWidth < 770 ? true : false;
+
+    if (isMobile) closeMenu();
+
+    if (isMobile) initNavbarMobile()
     else initNavbarDesktop();
+
+    updateSectionsList();
+}
+
+function closeMenu() {
+    isMenuDisplayed = false;
+
+    const sectionsContainer = navbar.querySelector('#navbar-sections-container');
+    const line = navbar.querySelector('.line-vertical');
+    const options = list.querySelectorAll('a');
+
+    gsap.to(line, { height: 0, duration: 0.2 });
+    gsap.to(sectionsContainer, { height: 0, duration: 0.15 });
+    gsap.to(options, { opacity: 0, duration: 0 });
 }
 
 function transitionNavbarHome() {
@@ -60,65 +74,62 @@ function transitionNavbarHome() {
     const links = navbar.querySelectorAll('a');
     const lines = navbar.querySelectorAll('[class*="line"]');
     const svgDots = navbar.querySelector('.home-icon-dots');
+    const sectionsContainer = navbar.querySelector('#navbar-sections-container');
 
     const initHomeTimeline = gsap.timeline();
 
     initHomeTimeline
-        .add(() => navbarTimelines.mobile.reverse())
+        .to(sectionsContainer, { backgroundColor: 'transparent', duration: 0 })
         .to(navbar, { backgroundColor: 'transparent', duration: 0 })
         .to(svgDots, { fill: colors.white, duration: 0.1 })
         .to(lines, { backgroundColor: colors.white, duration: 0.1 })
         .add(() => {
             const tl = gsap.timeline();
-        
+
             links.forEach((link, i) => {
                 const split = SplitText.create(link, { type: "chars" });
-        
+
                 tl.to(split.chars, {
                     color: colors.white,
                     stagger: { amount: 0.1 },
-                }, i * 0.15); 
+                }, i * 0.15);
             });
         })
-
-    isMenuDisplayed = false;
 
     return initHomeTimeline;
 }
 
 function transitionNavbarNotHome() {
-    handleMenuDisplay()
     navbarButton.innerHTML = selectedPage;
 
     const links = navbar.querySelectorAll('a');
     const lines = navbar.querySelectorAll('[class*="line"]');
+    const sectionsContainer = navbar.querySelector('#navbar-sections-container');
+
     const initNotHomeTimeline = gsap.timeline();
 
     initNotHomeTimeline
-        .add(() => navbarTimelines.mobile.reverse())
+        .to(sectionsContainer, { backgroundColor: colors.white, duration: 0 })
         .to(navbar, { backgroundColor: colors.white, duration: 0 })
         .to(navbarButton, { color: colors.black, duration: 0.1 })
         .to(lines, { backgroundColor: colors.black, duration: 0.1 })
         .add(() => {
             const tl = gsap.timeline();
-        
+
             links.forEach((link, i) => {
                 const split = SplitText.create(link, { type: "chars" });
-        
+
                 tl.to(split.chars, {
                     color: colors.black,
-                    stagger: { amount: 0.1 }, 
-                }, i * 0.15); 
+                    stagger: { amount: 0.1 },
+                }, i * 0.15);
             });
         })
-
-    isMenuDisplayed = false;
 
     return initNotHomeTimeline;
 }
 
 function initNavbarMobile() {
-    console.log('handle display')
     const navbarButton = selectedSection.querySelector('p');
     navbarButton.addEventListener('click', handleMenuDisplay);
 }
@@ -126,24 +137,30 @@ function initNavbarMobile() {
 function handleMenuDisplay() {
     if (!isMenuDisplayed) navbarTimelines.mobile.play();
     else navbarTimelines.mobile.reverse();
-
     isMenuDisplayed = !isMenuDisplayed;
 }
 
 function getMobileTimeline() {
     const options = Array.from(list.querySelectorAll('a'));
-    const listHeight = list.getBoundingClientRect().height;
     const sectionsContainer = navbar.querySelector('#navbar-sections-container');
+    const line = navbar.querySelector('.line-vertical');
 
     const tl = gsap.timeline({ paused: true });
-    tl.to(sectionsContainer, {
-        height: 190,
-        duration: 0.2
+
+    tl.to(line, {
+        height: 160,
+        duration: 0.1
     })
+        .to(sectionsContainer, {
+            height: 170,
+            duration: 0.2
+        }, '>0.05')
+
         .to(options, {
             stagger: { amount: 0.2 },
             opacity: 1
-        }, 0)
+        }, '>0.05')
+
 
     return tl;
 }
@@ -177,11 +194,31 @@ function getDesktopTimeline() {
 }
 
 function initNavbarDesktop() {
+    document.addEventListener('scroll', handleNavbarDisplayOnScroll);
     list.addEventListener('mouseleave', showSelectedSection);
     const links = list.querySelectorAll('a');
     links.forEach(link => {
         link.addEventListener('mouseenter', handleSectionNameDisplay);
     })
+}
+
+function handleNavbarDisplayOnScroll() {
+    if (window.scrollY > lastY) hideNavbar();
+    else showNavbar();
+
+    lastY = window.scrollY;
+}
+
+function hideNavbar() {
+    if (isNavbarHidden) return;
+    isNavbarHidden = true;
+    gsap.to(navbar, { yPercent: -100, duration: 0.4 })
+}
+
+function showNavbar() {
+    if (!isNavbarHidden) return;
+    isNavbarHidden = false;
+    gsap.to(navbar, { yPercent: 0, opacity: 1, duration: 0.5 })
 }
 
 function showSelectedSection() {
@@ -191,10 +228,7 @@ function showSelectedSection() {
 
     tl
         .to(selectedSection, { width: 16, duration: 0.2 })
-        .to(name, { opacity: 0, duration: 0.2 }, 0.05)
         .add(() => { name.innerHTML = selectedSectionInnerHTML })
-        .to(name, { yPercent: 0, opacity: 1, duration: 0 }, '>0.1')
-        .from(name, { xPercent: 100, opacity: 0, duration: 0.3 });
 
     tl.restart();
 }
@@ -209,5 +243,16 @@ function getSelectedSectionInfo(event) {
     return {
         name: event.currentTarget.innerText,
         width: event.currentTarget.getBoundingClientRect().width
+    }
+}
+
+function updateSectionsList() {
+    const links = navbar.querySelectorAll('a');
+    for (const link of links) {
+        if (link.innerText === selectedPage) {
+            link.parentNode.style.display = 'none';
+        } else {
+            link.parentNode.style.display = 'inline';
+        }
     }
 }
