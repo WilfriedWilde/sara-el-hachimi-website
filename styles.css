@@ -50,7 +50,7 @@ a {
 }
 
 .medium {
-    font-weight: 400;
+    font-weight: 450;
 }
 
 .bold {
@@ -194,7 +194,7 @@ nav {
     background-color: var(--color-white);
     color: var(--color-black);
     font-family: var(--font-main);
-    font-weight: 200;
+    font-weight: 300;
     font-size: var(--spacing-2);
 }
 
