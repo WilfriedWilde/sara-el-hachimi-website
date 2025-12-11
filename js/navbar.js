@@ -68,7 +68,18 @@ function transitionNavbarHome() {
         .to(navbar, { backgroundColor: 'transparent', duration: 0 })
         .to(svgDots, { fill: colors.white, duration: 0.1 })
         .to(lines, { backgroundColor: colors.white, duration: 0.1 })
-        .to(links, { color: colors.white, duration: 0.1 })
+        .add(() => {
+            const tl = gsap.timeline();
+        
+            links.forEach((link, i) => {
+                const split = SplitText.create(link, { type: "chars" });
+        
+                tl.to(split.chars, {
+                    color: colors.white,
+                    stagger: { amount: 0.1 },
+                }, i * 0.15); 
+            });
+        })
 
     isMenuDisplayed = false;
 
@@ -88,7 +99,18 @@ function transitionNavbarNotHome() {
         .to(navbar, { backgroundColor: colors.white, duration: 0 })
         .to(navbarButton, { color: colors.black, duration: 0.1 })
         .to(lines, { backgroundColor: colors.black, duration: 0.1 })
-        .to(links, { color: colors.black, duration: 0.1 })
+        .add(() => {
+            const tl = gsap.timeline();
+        
+            links.forEach((link, i) => {
+                const split = SplitText.create(link, { type: "chars" });
+        
+                tl.to(split.chars, {
+                    color: colors.black,
+                    stagger: { amount: 0.1 }, 
+                }, i * 0.15); 
+            });
+        })
 
     isMenuDisplayed = false;
 
@@ -111,11 +133,11 @@ function handleMenuDisplay() {
 function getMobileTimeline() {
     const options = Array.from(list.querySelectorAll('a'));
     const listHeight = list.getBoundingClientRect().height;
-    const line = navbar.querySelector('.line-vertical');
+    const sectionsContainer = navbar.querySelector('#navbar-sections-container');
 
     const tl = gsap.timeline({ paused: true });
-    tl.to(line, {
-        height: listHeight + 'px',
+    tl.to(sectionsContainer, {
+        height: 190,
         duration: 0.2
     })
         .to(options, {
