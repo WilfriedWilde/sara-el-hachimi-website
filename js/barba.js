@@ -1,4 +1,5 @@
 import initNavbar from "./navbar.js";
+import initIndex  from "./index.js";
 import initAbout from "./about.js";
 import initConcerts from "./concerts.js";
 import initProjects from "./projects.js";
@@ -6,6 +7,7 @@ import initMedias from "./medias.js";
 import initContact from "./contact.js";
 
 const pageInits = {
+    index: initIndex,
     about: initAbout,
     concerts: initConcerts,
     projects: initProjects,
@@ -20,10 +22,10 @@ export default function initBarba() {
         views: [{
             namespace: null,
             beforeEnter({ next }) {
-                const container = next.container.querySelector("[data-barba='container']");
+                const container = next.container
                 const page = next.container.dataset.namespace;
 
-                initUI(page, container)
+                initUI(page, container);
             }
         }],
         transitions: [{
@@ -32,13 +34,12 @@ export default function initBarba() {
                 const container = document.querySelector("[data-barba='container']");
                 const page = container.dataset.namespace;
                 initUI(page, container);
-
-                endNavigation();
             },
             leave({ current }) {
                 gsap.to(current.container, { autoAlpha: 0, duration: 0.5 });
             },
             enter({ next }) {
+                window.scrollTo(0, 0);
                 gsap.from(next.container, { autoAlpha: 0, duration: 0.5 });
             },
         }]

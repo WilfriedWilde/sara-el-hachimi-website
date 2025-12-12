@@ -39,7 +39,7 @@ function initNavbarTimelines() {
 ////////// STARTS HERE ///////////
 
 export default function initNavbar(page) {
-    selectedPage = page; console.log('init:', selectedPage)
+    selectedPage = page;
     navbarTimelines = initNavbarTimelines();
 
     if (selectedPage === 'index') navbarTimelines.transitionNavbarHome();
