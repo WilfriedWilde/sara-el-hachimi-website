@@ -158,7 +158,7 @@ function getMobileTimeline() {
 
         .to(options, {
             stagger: { amount: 0.2 },
-            opacity: 1
+            autoAlpha: 1
         }, '>0.05')
 
 

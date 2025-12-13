@@ -249,8 +249,8 @@ nav {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background: url('images/concerts.webp') top / 250% fixed;
-    background-position-x: -105%;
+    background: url(images/concerts.webp) top / 200% fixed;
+    background-position-x: 0;
     padding: var(--spacing-7) 0 0;
 }
 
@@ -366,7 +366,7 @@ nav {
 .concert-venue {
     font-family: var(--font-main);
     font-weight: 500;
-    font-size: var(--spacing-2);
+    font-size: var(--spacing-1);
     text-align: end;
 }
 
@@ -639,6 +639,7 @@ nav {
 
     #main-concerts {
         background: url("images/concerts.webp") top / cover no-repeat fixed;
+        background-position-y: 45%;
         padding: var(--spacing-8) 0 0;
     }
 
@@ -684,6 +685,10 @@ nav {
 
     .concert-location {
         padding-left: var(--spacing-6);
+    }
+
+    .concert-venue {
+        font-size: var(--spacing-2);
     }
 
     .concert-line-container {
