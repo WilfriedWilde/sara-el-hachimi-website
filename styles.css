@@ -129,14 +129,14 @@ nav {
     height: 1px;
     width: 100%;
     background-color: var(--color-white-transparent);
-    opacity: 0.75;
+    opacity: 0.3;
 }
 
 .line-vertical {
     width: 1px;
     background-color: var(--color-white-transparent);
     height: 0;
-    opacity: 0.75;
+    opacity: 0.3;
 }
 
 .navbar-home-icon {
@@ -222,7 +222,7 @@ nav {
     height: 100%;
     width: 100%;
     background-color: var(--color-black);
-    opacity: 0.75;
+    opacity: 0.3;
 }
 
 #about-album-container {
@@ -437,7 +437,7 @@ nav {
     height: 1px;
     flex: 1;
     background-color: var(--color-black);
-    opacity: 0.2;
+    opacity: 0.3;
 }
 
 .project-title {
@@ -690,5 +690,71 @@ nav {
         height: 2px;
         width: 100%;
         padding: 0 var(--spacing-9);
+    }
+
+    .project {
+        padding: var(--spacing-4) var(--spacing-6) var(--spacing-8) var(--spacing-6);
+        gap: var(--spacing-7);
+    }
+
+    .project-header {
+        gap: var(--spacing-3);
+    
+        svg {
+            height: var(--spacing-3);
+            width: var(--spacing-3);
+        }
+    }
+
+    .project-number {
+        font-size: var(--spacing-2);
+        width: var(--spacing-3);
+    }
+
+    .project-title {
+        font-size: var(--spacing-4);
+        min-width: max-content;
+    }
+
+    .project-lineup-row {
+        gap: var(--spacing-4);
+    }
+
+    .project-musician-name {
+        font-size: var(--spacing-3);
+    }
+    
+    .project-musician-instrument {
+        font-size: var(--spacing-2);
+    }
+
+    .project-text {
+        gap: var(--spacing-5);
+        font-size: var(--spacing-3);
+    }
+    
+    .project-paragraph {
+        gap: var(--spacing-2);
+        padding: 0 var(--spacing-7);
+    }
+    
+    .project-videos-container {
+        gap: var(--spacing-4);
+    }
+
+    .project-video {
+        height: 40vw;
+    }
+
+    .additional-projects-list {
+        padding: 0 var(--spacing-7);
+    }
+
+    .additional-project {
+        gap: var(--spacing-2);
+    
+        p {
+            flex: none;
+        }
     }
 }
