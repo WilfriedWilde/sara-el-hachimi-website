@@ -70,6 +70,10 @@ a {
     text-transform: capitalize;
 }
 
+.centered {
+    text-align: center;
+}
+
 /* NAVBAR */
 nav {
     position: fixed;
@@ -176,8 +180,7 @@ nav {
     height: var(--spacing-3);
 }
 
-/* MAIN */
-
+/* HOME */
 #main-home {
     height: 100vh;
     background: url('images/home1.webp');
@@ -390,6 +393,166 @@ nav {
     opacity: 0.75;
 }
 
+/* PROJECTS */
+#main-projects {
+    width: 100%;
+    padding: var(--spacing-7) 0 0;
+    color: var(--color-black);
+}
+
+#projects-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    padding: var(--spacing-4) var(--spacing-4) var(--spacing-6) var(--spacing-4);
+}
+
+.project-header {
+    display: flex;
+    gap: var(--spacing-2);
+    align-items: center;
+    font-family: var(--font-title);
+    font-weight: 700;
+
+    svg {
+        height: var(--spacing-2);
+        width: var(--spacing-2);
+        fill: var(--color-black);
+    }
+}
+
+.project-number {
+    font-size: var(--spacing-1);
+    width: var(--spacing-2);
+    text-align: center;
+}
+
+.project-line-horizontal {
+    height: 1px;
+    flex: 1;
+    background-color: var(--color-black);
+    opacity: 0.2;
+}
+
+.project-title {
+    font-size: var(--spacing-3);
+    text-transform: uppercase;
+    width: max-content;
+    text-align: center;
+    flex: 1;
+}
+
+.project-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.project-image {
+    width: 100%;
+}
+
+.project-lineup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    width: 100%;
+    padding-bottom: var(--spacing-5);
+}
+
+.project-lineup-row {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-1);
+}
+
+.project-musician-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.project-musician-name {
+    font-family: var(--font-subheader);
+    font-size: var(--spacing-2);
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.project-musician-instrument {
+    font-family: var(--font-main);
+    font-size: var(--spacing-1);
+}
+
+.project-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    font-family: var(--font-main);
+    font-size: var(--spacing-2);
+    font-weight: 300;
+}
+
+.project-paragraph {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+.project-videos-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    width: 100%;
+}
+
+.project-video {
+    width: 100%;
+    height: 60vw;
+    border-radius: var(--spacing-1);
+}
+
+.additional-projects-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-family: var(--font-subheader);
+    font-weight: 500;
+    font-size: var(--spacing-3);
+    text-transform: capitalize;
+}
+
+.additional-project {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: var(--spacing-1);
+
+    p {
+        flex: 1;
+    }
+    
+    a {
+        display: flex;
+        align-items: center;
+    }
+    svg {
+        height: var(--spacing-3);
+        width: var(--spacing-3);
+    }
+}
+
+
 /* RESPONSIVE */
 @media (min-width: 770px) {
     .big {
@@ -482,7 +645,7 @@ nav {
     #concerts-lists-container {
         gap: var(--spacing-3);
     }
-    
+
     #no-concerts-message {
         font-size: var(--spacing-4);
     }
