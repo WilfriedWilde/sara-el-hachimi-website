@@ -24,6 +24,7 @@
     --font-subheader: "Averia Libre", system-ui;
     --font-main: "Raleway", sans-serif;
     --golden-ratio: 1.618;
+    --tidal-ratio: 1.818;
 }
 
 body {
@@ -390,7 +391,7 @@ nav {
     height: 100%;
     width: 100%;
     background-color: var(--color-white);
-    opacity: 0.75;
+    opacity: 0.6;
 }
 
 /* PROJECTS */
@@ -472,6 +473,7 @@ nav {
 }
 
 .project-selected {
+    display: flex;
 }
 
 .project-image {
@@ -574,6 +576,81 @@ nav {
         height: var(--spacing-3);
         width: var(--spacing-3);
     }
+}
+
+/* MEDIAS */
+
+#main-medias {
+    width: 100%;
+    padding: var(--spacing-6) 0 0;
+    color: var(--color-black);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    color: var(--color-black);
+}
+
+.medias-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3);
+    width: 100%;
+    padding: var(--spacing-3);
+}
+
+.medias-section-title {
+    font-family: var(--font-subheader);
+    font-size: var(--spacing-3);
+}
+
+.media-line-container {
+    height: 1px;
+    width: 100%;
+    padding: 0 var(--spacing-6);
+}
+
+.media-line {
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-black);
+    opacity: 0.2;
+}
+
+.medias-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-4);
+    width: 100%;
+    padding: var(--spacing-4) 0;
+}
+
+#bandcamp-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-3);
+}
+
+.media-recording {
+    width: 30vw;
+    height: 30vw;
+    border: none;
+}
+
+.media-tidal {
+    width: 100%;
+    height: 120px;
+    border: none;
+}
+
+.media-video {
+    width: 100%;
+    height: 60vw;
+    border-radius: var(--spacing-1);
 }
 
 
@@ -802,4 +879,36 @@ nav {
             flex: none;
         }
     }
+
+    #main-medias {
+        padding: 150px 0 0;
+    }
+
+    .medias-section-title {
+        font-size: var(--spacing-4);
+    }
+
+    .medias-list {
+        padding: var(--spacing-6);
+    }
+
+    #bandcamp-container {
+        flex-direction: row;
+    }
+
+    .media-line-container {
+        height: 2px;
+        width: 100%;
+        padding: 0 var(--spacing-9);
+    }
+
+    .media-tidal {
+        width: 60%;
+        height: 120px;
+    }
+
+    .media-video {
+        height: 40vw;
+    }
+    
 }
