@@ -71,6 +71,7 @@ function handleShowProject(header, content) {
         .to([title, number], { color: 'var(--color-black)', duration: 1 })
         .to(project, { backgroundColor: 'var(--color-white)', duration: 0.5 }, 0)
         .to(lines, { backgroundColor: 'var(--color-black)', duration: 1 }, 0)
+        .to(content, { opacity: 1, duration: 0.1 }, 0)
         .to(icon, { fill: 'var(--color-black)', duration: 1 }, 0)
         .to(content, {
             height: contentHeights[projectName],
@@ -94,12 +95,13 @@ function handleHideProject(header, content) {
     const hideTimeline = gsap.timeline();
     hideTimeline
         .to([title, number], { color: 'var(--color-white)', duration: 1 })
-        .to(project, { backgroundColor: 'transparent', duration: 0.5 }, 0)
+        .to(project, { backgroundColor: 'transparent', duration: 0.8 }, 0)
+        .to(content, { opacity: 0, duration: 1 }, 0)
         .to(lines, { backgroundColor: 'var(--color-white)', duration: 1 }, 0)
         .to(icon, { fill: 'var(--color-white)', duration: 1 }, 0)
         .to(content, {
             height: 0,
-            duration: 1,
+            duration: 1.2,
             ease: 'power3.out'
         }, 0)
 }

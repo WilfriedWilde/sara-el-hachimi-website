@@ -445,6 +445,7 @@ nav {
     width: max-content;
     text-align: center;
     flex: 1;
+    text-shadow: 1px 1px 1px var(--color-black);
 }
 
 .project-button {
@@ -467,12 +468,10 @@ nav {
     flex-direction: column;
     gap: var(--spacing-3);
     opacity: 0;
-    transition: opacity 1.5s ease-in-out;
     padding: 0 var(--spacing-2);
 }
 
 .project-selected {
-    opacity: 1;
 }
 
 .project-image {
@@ -553,6 +552,7 @@ nav {
     font-weight: 500;
     font-size: var(--spacing-3);
     text-transform: capitalize;
+    padding-top: var(--spacing-4);
 }
 
 .additional-project {
@@ -627,6 +627,7 @@ nav {
     }
 
     #navbar-sections-list {
+        display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: end;
@@ -721,12 +722,21 @@ nav {
         padding: 0 var(--spacing-9);
     }
 
+    #main-projects {
+        padding: 150px 0 0;
+        background: url('images/half_moon.webp') center / cover fixed;
+    }
+
     .project {
-        padding: var(--spacing-4) var(--spacing-6) var(--spacing-8) var(--spacing-6);
+        padding: var(--spacing-4) var(--spacing-6) var(--spacing-6) var(--spacing-6);
     }
 
     .project-header {
         gap: var(--spacing-3);
+    }
+
+    .project-header:hover {
+        cursor: pointer;
     }
 
     .project-number {
@@ -782,7 +792,7 @@ nav {
     }
 
     .additional-projects-list {
-        padding: 0 var(--spacing-7);
+        padding: var(--spacing-6) var(--spacing-7) 0 var(--spacing-7);
     }
 
     .additional-project {
