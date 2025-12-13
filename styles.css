@@ -80,18 +80,18 @@ nav {
     height: var(--spacing-6);
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     flex-direction: column;
     justify-content: center;
     align-items: start;
     color: var(--color-white);
-    padding: var(--spacing-1) 0;
+    padding: var(--spacing-1) 0 0 var(--spacing-3);
     z-index: 10;
 }
 
 #navbar-title {
     display: flex;
-    grid-column: 2;
+    grid-column: 1;
     flex-direction: column;
     gap: var(--spacing-2);
     width: max-content;
@@ -148,7 +148,7 @@ nav {
 #navbar-sections-container {
     display: flex;
     gap: var(--spacing-2);
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 2;
     background-color: var(--color-white);
     height: 0;
@@ -156,7 +156,7 @@ nav {
 }
 
 #navbar-sections-list {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: start;
     gap: var(--spacing-2);
@@ -396,21 +396,24 @@ nav {
 /* PROJECTS */
 #main-projects {
     width: 100%;
-    padding: var(--spacing-7) 0 0;
+    padding: var(--spacing-6) 0 0;
     color: var(--color-black);
+    background: url('images/half_moon.webp') center / cover fixed;
 }
 
 #projects-container {
     width: 100%;
     display: flex;
     flex-direction: column;
+    min-height: calc(100vh - var(--spacing-6));
+    justify-content: center;
 }
 
 .project {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-6);
-    padding: var(--spacing-4) var(--spacing-4) var(--spacing-6) var(--spacing-4);
+    overflow: hidden;
+    padding: var(--spacing-2) 0;
 }
 
 .project-header {
@@ -419,43 +422,62 @@ nav {
     align-items: center;
     font-family: var(--font-title);
     font-weight: 700;
-
-    svg {
-        height: var(--spacing-2);
-        width: var(--spacing-2);
-        fill: var(--color-black);
-    }
+    color: var(--color-white);
 }
 
 .project-number {
     font-size: var(--spacing-1);
     width: var(--spacing-2);
     text-align: center;
+    margin-left: var(--spacing-2);
 }
 
 .project-line-horizontal {
     height: 1px;
     flex: 1;
-    background-color: var(--color-black);
+    background-color: var(--color-white);
     opacity: 0.3;
 }
 
 .project-title {
-    font-size: var(--spacing-3);
+    font-size: var(--spacing-2);
     text-transform: uppercase;
     width: max-content;
     text-align: center;
     flex: 1;
 }
 
+.project-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--spacing-2);
+    width: var(--spacing-2);
+    margin-right: var(--spacing-2);
+
+    svg {
+        height: 100%;
+        width: 100%;
+        fill: var(--color-white);
+    }
+}
+
 .project-content {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    padding: 0 var(--spacing-2);
+}
+
+.project-selected {
+    opacity: 1;
 }
 
 .project-image {
     width: 100%;
+    padding-top: var(--spacing-6);
 }
 
 .project-lineup {
@@ -512,6 +534,7 @@ nav {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
+    padding: var(--spacing-4) 0;
     width: 100%;
 }
 
@@ -541,11 +564,12 @@ nav {
     p {
         flex: 1;
     }
-    
+
     a {
         display: flex;
         align-items: center;
     }
+
     svg {
         height: var(--spacing-3);
         width: var(--spacing-3);
@@ -699,16 +723,10 @@ nav {
 
     .project {
         padding: var(--spacing-4) var(--spacing-6) var(--spacing-8) var(--spacing-6);
-        gap: var(--spacing-7);
     }
 
     .project-header {
         gap: var(--spacing-3);
-    
-        svg {
-            height: var(--spacing-3);
-            width: var(--spacing-3);
-        }
     }
 
     .project-number {
@@ -721,6 +739,18 @@ nav {
         min-width: max-content;
     }
 
+    .project-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--spacing-3);
+        width: var(--spacing-3);
+    }
+
+    .project-image {
+        padding-top: var(--spacing-7);
+    }
+
     .project-lineup-row {
         gap: var(--spacing-4);
     }
@@ -728,7 +758,7 @@ nav {
     .project-musician-name {
         font-size: var(--spacing-3);
     }
-    
+
     .project-musician-instrument {
         font-size: var(--spacing-2);
     }
@@ -737,12 +767,12 @@ nav {
         gap: var(--spacing-5);
         font-size: var(--spacing-3);
     }
-    
+
     .project-paragraph {
         gap: var(--spacing-2);
         padding: 0 var(--spacing-7);
     }
-    
+
     .project-videos-container {
         gap: var(--spacing-4);
     }
@@ -757,7 +787,7 @@ nav {
 
     .additional-project {
         gap: var(--spacing-2);
-    
+
         p {
             flex: none;
         }

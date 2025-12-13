@@ -135,8 +135,16 @@ function initNavbarMobile() {
 }
 
 function handleMenuDisplay() {
-    if (!isMenuDisplayed) navbarTimelines.mobile.play();
-    else navbarTimelines.mobile.reverse();
+    if (!isMenuDisplayed) {
+        list.style.display = 'flex';
+        navbarTimelines.mobile.play();
+    } else {
+        navbarTimelines.mobile.reverse();
+        setTimeout(() => {
+            list.style.display = 'none';
+        }, 1000);
+    }
+
     isMenuDisplayed = !isMenuDisplayed;
 }
 
