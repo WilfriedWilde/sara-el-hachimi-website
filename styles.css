@@ -18,7 +18,7 @@
     --spacing-9: 464px;
     --color-black: hsl(0, 0%, 7.8%);
     --color-white: hsl(0, 0%, 97.3%);
-    --color-white-transparent: hsla(0, 0%, 97.3%, 0.75);
+    --color-white-transparent: hsla(0, 0%, 97.3%, 0.7);
     --color-gray: hsl(0, 0%, 43.1%);
     --font-title: "Caudex", serif;
     --font-subheader: "Averia Libre", system-ui;
@@ -294,6 +294,7 @@ nav {
     padding: var(--spacing-1) var(--spacing-2);
     color: var(--color-white);
     backdrop-filter: blur(5px) brightness(0.8);
+    border: 1px solid var(--color-white);
 }
 
 .concert-date {
@@ -821,6 +822,7 @@ nav {
 
     .concert {
         padding: var(--spacing-2) var(--spacing-3);
+        border: 2px solid var(--color-white);
     }
 
     .concert-date {
