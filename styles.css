@@ -1010,6 +1010,10 @@ nav {
             width: 100%;
         }
     }
+
+    .icon-instagram:hover {
+        cursor: pointer;
+    }
     
     .icon-youtube {
         height: var(--spacing-3);
@@ -1019,5 +1023,9 @@ nav {
             height: 100%;
             width: 100%;
         }
+    }
+
+    .icon-youtube:hover {
+        cursor: pointer;
     }
 }
