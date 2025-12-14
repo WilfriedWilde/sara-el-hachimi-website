@@ -985,6 +985,10 @@ nav {
     .contact-email {
         font-size: var(--spacing-4);
     }
+
+    .contact-email:hover {
+        cursor: pointer;
+    }
     
     #contact-social-medias {
         gap: var(--spacing-1);
