@@ -587,7 +587,6 @@ nav {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-5);
-    color: var(--color-black);
 }
 
 .medias-container {
@@ -653,6 +652,69 @@ nav {
     border-radius: var(--spacing-1);
 }
 
+/* CONTACT */
+#main-contact {
+    width: 100%;
+    max-height: 100vh;
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-4);
+    background: url('images/contact2.webp') top / cover;
+}
+
+#contact-booking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.contact-title {
+    font-family: var(--font-title);
+    font-weight: 400;
+    font-size: var(--spacing-1);
+}
+
+.contact-email {
+    font-family: var(--font-subheader);
+    font-size: var(--spacing-2);
+    text-shadow: 1px 1px 1px var(--color-black);
+}
+
+#contact-social-medias {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
+}
+
+.contact-icons-container {
+    display: flex;
+    gap: var(--spacing-2);
+}
+
+.icon-instagram {
+    height: var(--spacing-2);
+    width: var(--spacing-2);
+
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.icon-youtube {
+    height: var(--spacing-2);
+    width: var(--spacing-2);
+
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+}
 
 /* RESPONSIVE */
 @media (min-width: 770px) {
@@ -910,5 +972,46 @@ nav {
     .media-video {
         height: 40vw;
     }
+
+    #main-contact {
+        padding: 150px 0 0 0;
+        gap: var(--spacing-5);
+    }
+
+    .contact-title {
+        font-size: var(--spacing-3);
+    }
     
+    .contact-email {
+        font-size: var(--spacing-4);
+    }
+    
+    #contact-social-medias {
+        gap: var(--spacing-1);
+    }
+    
+    .contact-icons-container {
+        display: flex;
+        gap: var(--spacing-3);
+    }
+    
+    .icon-instagram {
+        height: var(--spacing-3);
+        width: var(--spacing-3);
+    
+        svg {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    
+    .icon-youtube {
+        height: var(--spacing-3);
+        width: var(--spacing-3);
+    
+        svg {
+            height: 100%;
+            width: 100%;
+        }
+    }
 }
