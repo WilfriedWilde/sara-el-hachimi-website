@@ -83,7 +83,7 @@ function populateConcertsLists(data) {
     }
 
     upcomingConcertsData = getChronologicallySortedData(upcomingConcertsData);
-    pastConcertsData = getChronologicallyReversedSortedData(pastConcertsData); console.log('upcoming', upcomingConcertsData, 'past', pastConcertsData)
+    pastConcertsData = getChronologicallyReversedSortedData(pastConcertsData);
 
     for (let i = 0; i < upcomingConcertsData.length; i++) {
         upcomingConcertsList.appendChild(buildConcertHTML(upcomingConcertsData, i));

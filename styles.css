@@ -36,9 +36,12 @@ main {
     min-height: 100vh;
 }
 
-[data-barba="container"] {
+[data-barba="wrapper"] {
     position: relative;
-    z-index: 1;
+}
+
+[data-barba="container"] {
+    width: 100vw;
 }
 
 ul {
@@ -164,7 +167,7 @@ nav {
     font-family: var(--font-subheader);
     font-size: var(--spacing-2);
     width: max-content;
-    padding: 0 var(--spacing-1) 0 0;
+    padding: 0 var(--spacing-1) var(--spacing-1) 0;
 
     svg {
         display: none;
@@ -183,6 +186,7 @@ nav {
 
 /* HOME */
 #main-home {
+    display: flex;
     height: 100vh;
     background: url('images/home1.webp');
     background-size: cover;
@@ -471,6 +475,7 @@ nav {
     gap: var(--spacing-3);
     opacity: 0;
     padding: 0 var(--spacing-2);
+    height: 0;
 }
 
 .project-selected {
@@ -715,6 +720,73 @@ nav {
         height: 100%;
         width: 100%;
     }
+}
+
+/* FOOTER */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-2);
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+
+#footer-copyright {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: var(--spacing-1);
+    flex: 1;
+}
+
+#footer-social-medias {
+    display: flex;
+    gap: var(--spacing-2);
+}
+
+.footer-icon-container {
+    height: var(--spacing-2);
+    width: var(--spacing-2);
+
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+#footer-credits {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: var(--spacing-1);
+    flex: 1;
+}
+
+.credit-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.credit-type {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    font-family: var(--font-main);
+    font-size: var(--spacing-1);
+}
+
+.line-footer {
+    background-color: var(--color-black);
+}
+
+.credit-person {
+    font-family: var(--font-title);
+    font-size: var(--spacing-1);
+    text-transform: uppercase;
+    width: max-content;
 }
 
 /* RESPONSIVE */

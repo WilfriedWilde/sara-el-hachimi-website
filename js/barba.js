@@ -1,18 +1,12 @@
 import initNavbar from "./navbar.js";
-import initIndex  from "./index.js";
-import initAbout from "./about.js";
+import initIndex from "./index.js";
 import initConcerts from "./concerts.js";
 import initProjects from "./projects.js";
-import initMedias from "./medias.js";
-import initContact from "./contact.js";
 
 const pageInits = {
     index: initIndex,
-    about: initAbout,
     concerts: initConcerts,
     projects: initProjects,
-    medias: initMedias,
-    contact: initContact
 }
 
 let lastPage = null;
@@ -26,21 +20,29 @@ export default function initBarba() {
                 const page = next.container.dataset.namespace;
 
                 initUI(page, container);
+            },
+            afterEnter() {
+                setCopyrightText();
             }
         }],
         transitions: [{
             name: 'page-transition',
+
             once() {
                 const container = document.querySelector("[data-barba='container']");
                 const page = container.dataset.namespace;
                 initUI(page, container);
             },
-            leave({ current }) {
-                gsap.to(current.container, { autoAlpha: 0, duration: 0.5 });
-            },
-            enter({ next }) {
+            beforeEnter({ current }) {
                 window.scrollTo(0, 0);
-                gsap.from(next.container, { autoAlpha: 0, duration: 0.5 });
+                current.container.style.position = 'absolute';
+            },
+            enter({ current }) {
+                return gsap.to(current.container, {
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: 'power1.out'
+                });
             },
         }]
     })
@@ -51,9 +53,16 @@ function initUI(page, container) {
     lastPage = page;
 
     initNavbar(page);
+    setCopyrightText();
     initPage(page, container);
 }
 
 function initPage(page, container) {
     if (pageInits[page]) pageInits[page](container);
+}
+
+function setCopyrightText() {
+    const copyright = document.getElementById('footer-copyright');
+    const year = new Date().getFullYear();
+    copyright.innerHTML = `<p>© ${year} Sara El Hachimi.</p><p>All rights reserved.</p>`;
 }

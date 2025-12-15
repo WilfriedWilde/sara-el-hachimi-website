@@ -11,34 +11,12 @@ const svgHTML = {
     `
 }
 
-let contentHeights = {};
 let projectHeaders = [];
 
 export default function initProjects(barbaContainer) {
     projectHeaders = Array.from(barbaContainer.querySelectorAll('.project-header'));
 
-    storeAndInitContentHeights(barbaContainer); console.log(contentHeights)
     attachEventListeners();
-}
-
-function storeAndInitContentHeights(barbaContainer) {
-    const contents = Array.from(barbaContainer.querySelectorAll('.project-content'));
-
-    contentHeights = storeContentHeights(contents);
-    initContentHeights(contents);
-}
-function storeContentHeights(contents) {
-    return Object.fromEntries(
-        contents.map(content => {
-            const contentHeight = content.getBoundingClientRect().height;
-            const projectName = content.parentNode.querySelector('.project-title').innerText.toLowerCase();
-            return [projectName, contentHeight];
-        })
-    )
-}
-
-function initContentHeights(contents) {
-    contents.forEach(content => content.style.height = 0);
 }
 
 function attachEventListeners() {
@@ -57,27 +35,29 @@ function handleShowProject(header, content) {
     const button = header.querySelector('.project-button');
     button.innerHTML = svgHTML.less;
 
-    content.classList.add('project-selected')
+    content.classList.add('project-selected');
+
+    content.style.height = 'auto';
+    const targetHeight = content.getBoundingClientRect().height;
+    content.style.height = '0px';
 
     const project = content.parentNode;
-    const projectName = project.querySelector('.project-title').innerText.toLowerCase();
     const number = header.querySelector('.project-number');
     const title = header.querySelector('.project-title');
     const lines = project.querySelectorAll('.project-line-horizontal');
     const icon = button.querySelector('svg');
 
-    const showTimeline = gsap.timeline();
-    showTimeline
+    gsap.timeline()
         .to([title, number], { color: 'var(--color-black)', duration: 1 })
         .to(project, { backgroundColor: 'var(--color-white)', duration: 0.5 }, 0)
         .to(lines, { backgroundColor: 'var(--color-black)', duration: 1 }, 0)
         .to(content, { opacity: 1, duration: 0.1 }, 0)
         .to(icon, { fill: 'var(--color-black)', duration: 1 }, 0)
         .to(content, {
-            height: contentHeights[projectName],
+            height: targetHeight,
             duration: 1,
             ease: 'power3.in'
-        }, 0)
+        }, 0);
 }
 
 function handleHideProject(header, content) {

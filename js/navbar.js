@@ -156,11 +156,11 @@ function getMobileTimeline() {
     const tl = gsap.timeline({ paused: true });
 
     tl.to(line, {
-        height: 160,
+        height: 'auto',
         duration: 0.1
     })
         .to(sectionsContainer, {
-            height: 170,
+            height: 'auto',
             duration: 0.2
         }, '>0.05')
 
