@@ -41,7 +41,7 @@ main {
 }
 
 [data-barba="container"] {
-    width: 100vw;
+    width: 100%;
 }
 
 ul {
@@ -1099,5 +1099,35 @@ footer {
 
     .icon-youtube:hover {
         cursor: pointer;
+    }
+
+    footer {
+        padding: var(--spacing-3);
+    }
+    
+    #footer-copyright {
+        font-size: var(--spacing-2);
+    }
+    
+    .footer-icon-container {
+        height: var(--spacing-3);
+        width: var(--spacing-3);
+    }
+
+    .footer-icon-container:hover {
+        cursor: pointer;
+    }
+    
+    #footer-credits {
+        gap: var(--spacing-2);
+    }
+    
+    .credit-type {
+        gap: var(--spacing-2);
+        font-size: var(--spacing-2);
+    }
+
+    .credit-person {
+        font-size: var(--spacing-2);
     }
 }
