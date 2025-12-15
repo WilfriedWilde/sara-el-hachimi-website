@@ -30,6 +30,7 @@
 body {
     min-height: 100vh;
     background-color: var(--color-white);
+    overflow-x: hidden;
 }
 
 main {
@@ -408,11 +409,13 @@ nav {
 }
 
 #projects-container {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - var(--spacing-6));
     justify-content: center;
+    z-index: 1;
 }
 
 .project {
@@ -724,6 +727,7 @@ nav {
 
 /* FOOTER */
 footer {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -731,6 +735,7 @@ footer {
     padding: var(--spacing-2);
     background-color: var(--color-white);
     color: var(--color-black);
+    z-index: 10;
 }
 
 #footer-copyright {
@@ -938,6 +943,11 @@ footer {
     #main-projects {
         padding: 150px 0 0;
         background: url('images/half_moon.webp') center / cover fixed;
+    }
+
+    .background-video {
+        height: auto;
+        width: 100%;
     }
 
     .project {
