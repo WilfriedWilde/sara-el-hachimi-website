@@ -42,13 +42,14 @@ function handleShowProject(header, content) {
     content.style.height = '0px';
 
     const project = content.parentNode;
-    const number = header.querySelector('.project-number');
+    const circle = header.querySelector('.icon-circle');
     const title = header.querySelector('.project-title');
     const lines = project.querySelectorAll('.project-line-horizontal');
     const icon = button.querySelector('svg');
 
     gsap.timeline()
-        .to([title, number], { color: 'var(--color-black)', duration: 1 })
+        .to(title, { color: 'var(--color-black)', duration: 1 })
+        .to(circle, { fill: 'var(--color-black)', duration: 1 }, 0)
         .to(project, { backgroundColor: 'var(--color-white)', duration: 0.5 }, 0)
         .to(lines, { backgroundColor: 'var(--color-black)', duration: 1 }, 0)
         .to(content, { opacity: 1, duration: 0.1 }, 0)
@@ -67,14 +68,15 @@ function handleHideProject(header, content) {
     content.classList.remove('project-selected')
 
     const project = content.parentNode;
-    const number = header.querySelector('.project-number');
+    const circle = header.querySelector('.icon-circle');
     const title = header.querySelector('.project-title');
     const lines = project.querySelectorAll('.project-line-horizontal');
     const icon = button.querySelector('svg');
 
     const hideTimeline = gsap.timeline();
     hideTimeline
-        .to([title, number], { color: 'var(--color-white)', duration: 1 })
+        .to(title, { color: 'var(--color-white)', duration: 1 })
+        .to(circle, { fill: 'var(--color-white)', duration: 1 }, 0)
         .to(project, { backgroundColor: 'transparent', duration: 0.8 }, 0)
         .to(content, { opacity: 0, duration: 1 }, 0)
         .to(lines, { backgroundColor: 'var(--color-white)', duration: 1 }, 0)

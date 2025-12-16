@@ -454,10 +454,20 @@ nav {
 }
 
 .project-number {
-    font-size: var(--spacing-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: var(--spacing-2);
-    text-align: center;
     margin-left: var(--spacing-2);
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.icon-circle {
+    fill: var(--color-white);
 }
 
 .project-line-horizontal {
@@ -991,7 +1001,6 @@ footer {
     }
 
     .project-number {
-        font-size: var(--spacing-2);
         width: var(--spacing-3);
     }
 
