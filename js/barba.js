@@ -1,4 +1,5 @@
 import initNavbar from "./navbar.js";
+import initFooter from "./footer.js";
 import initIndex from "./index.js";
 import initConcerts from "./concerts.js";
 import initProjects from "./projects.js";
@@ -53,16 +54,10 @@ function initUI(page, container) {
     lastPage = page;
 
     initNavbar(page);
-    setCopyrightText();
+    initFooter(page, container);
     initPage(page, container);
 }
 
 function initPage(page, container) {
     if (pageInits[page]) pageInits[page](container);
-}
-
-function setCopyrightText() {
-    const copyright = document.getElementById('footer-copyright');
-    const year = new Date().getFullYear();
-    copyright.innerHTML = `<p>© ${year} Sara El Hachimi.</p><p>All rights reserved.</p>`;
 }

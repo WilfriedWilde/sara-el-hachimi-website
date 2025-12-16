@@ -54,6 +54,14 @@ a {
     color: inherit;
 }
 
+figcaption {
+    font-family: var(--font-main);
+    font-size: 8px;
+    font-style: italic;
+    text-align: center;
+    text-transform: capitalize;
+}
+
 .medium {
     font-weight: 450;
 }
@@ -825,6 +833,10 @@ footer {
 
 /* RESPONSIVE */
 @media (min-width: 770px) {
+    figcaption {
+        font-size: var(--spacing-2);
+    }
+
     .big {
         font-size: var(--spacing-4);
     }
