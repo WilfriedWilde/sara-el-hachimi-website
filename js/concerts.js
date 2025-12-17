@@ -11,7 +11,7 @@ export default async function initConcerts(barbaContainer) {
     upcomingConcertsData = [];
     pastConcertsData = [];
 
-    const concertsData = await getConcertsData();
+    const concertsData = await getConcertsData(); console.log('data:', concertsData)
     populateConcertsLists(concertsData);
 
     if (concertsData.length > 0) {
@@ -32,7 +32,7 @@ async function getConcertsData() {
 export async function fetchSheetsData(url) {
     const CACHE_KEY = "concertsCache";
     const CACHE_TIME_KEY = "concertsCacheTime";
-    const TEN_MINUTES = 3 * 60 * 1000;
+    const TEN_MINUTES = 0 * 60 * 1000;
 
     const cached = localStorage.getItem(CACHE_KEY);
     const timestamp = localStorage.getItem(CACHE_TIME_KEY);
@@ -45,7 +45,7 @@ export async function fetchSheetsData(url) {
 
     try {
         const response = await fetch(url);
-        const text = await response.text();
+        const text = await response.text();console.log('raw:', text)
         const rows = text.split(/\r?\n/).map(row => row.split(","));
         const headers = rows[0];
 
@@ -82,8 +82,8 @@ function populateConcertsLists(data) {
         else pastConcertsData.push(data[i]);
     }
 
-    upcomingConcertsData = getChronologicallySortedData(upcomingConcertsData);
-    pastConcertsData = getChronologicallyReversedSortedData(pastConcertsData);
+    upcomingConcertsData = getChronologicallySortedData(upcomingConcertsData);console.log('upcoming:', upcomingConcertsData)
+    pastConcertsData = getChronologicallyReversedSortedData(pastConcertsData);console.log('past:', pastConcertsData)
 
     for (let i = 0; i < upcomingConcertsData.length; i++) {
         upcomingConcertsList.appendChild(buildConcertHTML(upcomingConcertsData, i));
