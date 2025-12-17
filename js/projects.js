@@ -48,7 +48,7 @@ function handleShowProject(header, content) {
     const icon = button.querySelector('svg');
 
     gsap.timeline()
-        .to(title, { color: 'var(--color-black)', duration: 1 })
+        .to(title, { color: 'var(--color-black)', textShadow: 'none', duration: 1 })
         .to(circle, { fill: 'var(--color-black)', duration: 1 }, 0)
         .to(project, { backgroundColor: 'var(--color-white)', duration: 0.5 }, 0)
         .to(lines, { backgroundColor: 'var(--color-black)', duration: 1 }, 0)
@@ -75,7 +75,7 @@ function handleHideProject(header, content) {
 
     const hideTimeline = gsap.timeline();
     hideTimeline
-        .to(title, { color: 'var(--color-white)', duration: 1 })
+        .to(title, { color: 'var(--color-white)', textShadow: '1px 1px 1px var(--color-black)', duration: 1 })
         .to(circle, { fill: 'var(--color-white)', duration: 1 }, 0)
         .to(project, { backgroundColor: 'transparent', duration: 0.8 }, 0)
         .to(content, { opacity: 0, duration: 1 }, 0)
