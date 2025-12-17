@@ -68,7 +68,7 @@ function appendCredits(image) {
     
     caption.appendChild(link);
     
-    image.parentNode.insertBefore(figure, image);console.log(image.parentNode)
+    image.parentNode.insertBefore(figure, image);
     figure.appendChild(image);
     figure.appendChild(caption);
 }
