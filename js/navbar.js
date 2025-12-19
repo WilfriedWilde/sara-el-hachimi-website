@@ -5,8 +5,8 @@ const list = navbar.querySelector('ul');
 const selectedSection = navbar.querySelector('#selected-section');
 const navbarButton = selectedSection.querySelector('p');
 
-const dots = ` 
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="home-icon-dots">
+const menu = ` 
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="home-icon-menu">
         <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
     </svg>
 `;
@@ -68,12 +68,12 @@ function closeMenu() {
 }
 
 function transitionNavbarHome() {
-    navbarButton.innerHTML = dots;
+    navbarButton.innerHTML = menu;
     navbarButton.style.color = colors.white;
 
     const links = navbar.querySelectorAll('a');
     const lines = navbar.querySelectorAll('[class*="line"]');
-    const svgDots = navbar.querySelector('.home-icon-dots');
+    const svgMenu = navbar.querySelector('.home-icon-menu');
     const sectionsContainer = navbar.querySelector('#navbar-sections-container');
 
     const initHomeTimeline = gsap.timeline();
@@ -81,7 +81,7 @@ function transitionNavbarHome() {
     initHomeTimeline
         .to(sectionsContainer, { backgroundColor: 'transparent', duration: 0 })
         .to(navbar, { backgroundColor: 'transparent', duration: 0 })
-        .to(svgDots, { fill: colors.white, duration: 0.1 })
+        .to(svgMenu, { fill: colors.white, duration: 0.1 })
         .to(lines, { backgroundColor: colors.white, duration: 0.1 })
         .add(() => {
             const tl = gsap.timeline();
@@ -131,10 +131,10 @@ function transitionNavbarNotHome() {
 
 function initNavbarMobile() {
     const navbarButton = selectedSection.querySelector('p');
-    navbarButton.addEventListener('click', handleMenuDisplay);
+    navbarButton.addEventListener('click', handleMobileMenuDisplay);
 }
 
-function handleMenuDisplay() {
+function handleMobileMenuDisplay() {
     if (!isMenuDisplayed) {
         list.style.display = 'flex';
         navbarTimelines.mobile.play();
@@ -202,12 +202,39 @@ function getDesktopTimeline() {
 }
 
 function initNavbarDesktop() {
-    document.addEventListener('scroll', handleNavbarDisplayOnScroll);
+    const navbarButton = selectedSection.querySelector('p');
+    navbarButton.addEventListener('click', handleDesktopMenuDisplay);
+
     list.addEventListener('mouseleave', showSelectedSection);
+
     const links = list.querySelectorAll('a');
     links.forEach(link => {
         link.addEventListener('mouseenter', handleSectionNameDisplay);
     })
+
+    document.addEventListener('scroll', handleNavbarDisplayOnScroll);
+}
+
+function handleDesktopMenuDisplay() {
+    const options = Array.from(list.querySelectorAll('a'));
+
+    if (!isMenuDisplayed) {
+        list.style.display = 'flex';
+        gsap.to(options, {
+            stagger: { amount: 0.2, from: 'start' },
+            autoAlpha: 1
+        })
+    } else {
+        gsap.to(options, {
+            stagger: { amount: 0.2 , from: 'end' },
+            autoAlpha: 0
+        })
+        setTimeout(() => {
+            list.style.display = 'none';
+        }, 1000);
+    }
+
+    isMenuDisplayed = !isMenuDisplayed;
 }
 
 function handleNavbarDisplayOnScroll() {
@@ -232,10 +259,10 @@ function showNavbar() {
 function showSelectedSection() {
     const tl = gsap.timeline({ paused: true });
     const name = selectedSection.querySelector('p');
-    const selectedSectionInnerHTML = selectedPage === 'index' ? dots : selectedPage;
+    const selectedSectionInnerHTML = selectedPage === 'index' ? menu : selectedPage;
 
     tl
-        .to(selectedSection, { width: 16, duration: 0.2 })
+        .to(selectedSection, { width: 'var(--spacing-4)', duration: 0.2 })
         .add(() => { name.innerHTML = selectedSectionInnerHTML })
 
     tl.restart();

@@ -135,6 +135,7 @@ nav {
         font-family: var(--font-subheader);
         font-size: var(--spacing-2);
         display: flex;
+        align-items: center;
     }
 }
 
@@ -150,12 +151,6 @@ nav {
     background-color: var(--color-white-transparent);
     height: 0;
     opacity: 0.3;
-}
-
-.navbar-home-icon {
-    display: inline;
-    fill: var(--color-white);
-    height: var(--spacing-4);
 }
 
 #navbar-sections-container {
@@ -178,17 +173,13 @@ nav {
     width: max-content;
     padding: 0 var(--spacing-1) var(--spacing-1) 0;
 
-    svg {
-        display: none;
-    }
-
     a {
         color: var(--color-white);
         opacity: 0;
     }
 }
 
-.home-icon-dots {
+.home-icon-menu {
     fill: var(--color-white);
     height: var(--spacing-3);
 }
@@ -861,20 +852,24 @@ footer {
     }
 
     #selected-section {
-        width: var(--spacing-2);
+        width: auto;
 
         p {
             font-size: var(--spacing-3);
-            height: var(--spacing-3);
+            height: var(--spacing-4);
         }
+    }
+
+    .home-icon-menu {
+        height: var(--spacing-4);
+    }
+
+    .home-icon-menu:hover {
+        cursor: pointer;
     }
 
     #navbar-title h1 {
         font-size: var(--spacing-4);
-    }
-
-    .navbar-home-icon {
-        display: none;
     }
 
     #navbar-sections-container {
@@ -885,7 +880,6 @@ footer {
     }
 
     #navbar-sections-list {
-        display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: end;
@@ -893,14 +887,6 @@ footer {
         font-size: var(--spacing-3);
         width: auto;
         padding: 0;
-
-        svg {
-            display: inline;
-        }
-
-        a {
-            opacity: 1;
-        }
     }
 
     #main-about {
