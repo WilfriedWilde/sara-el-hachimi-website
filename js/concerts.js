@@ -78,7 +78,7 @@ function populateConcertsLists(data) {
     if (!data) return;
 
     for (let i = 0; i < data.length; i++) {
-        if (isConcertUpcoming(data, i)) upcomingConcertsData.push(data[i]);
+        if (isConcertUpcoming(data[i])) upcomingConcertsData.push(data[i]);
         else pastConcertsData.push(data[i]);
     }
 
@@ -107,11 +107,21 @@ function parseDDMMYYYY(dateStr) {
     return new Date(year, month - 1, day);
 }
 
-function isConcertUpcoming(data, index) {
-    const concertDate = new Date(formatDate(data[index].date, 'us')).getTime();
-    const now = Date.now();
-    return concertDate > now;
-};
+function isConcertUpcoming(concert) {
+    const concertDateTime = parseLocalDateTime(
+        concert.date,
+        concert.time ?? "23:59" // future-proof
+    );
+
+    return concertDateTime.getTime() > Date.now();
+}
+
+function parseLocalDateTime(date, time = "23:59") {
+    const [day, month, year] = date.split('-').map(Number);
+    const [hours, minutes] = time.split(':').map(Number);
+
+    return new Date(year, month - 1, day, hours, minutes, 0, 0);
+}
 
 function formatDate(date, format) {
     if (format === 'us') {
