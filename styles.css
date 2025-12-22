@@ -860,6 +860,10 @@ footer {
         }
     }
 
+    #selected-section:hover {
+        cursor: pointer;
+    }
+
     .home-icon-menu {
         height: var(--spacing-4);
     }
